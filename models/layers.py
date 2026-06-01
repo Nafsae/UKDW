@@ -2,15 +2,14 @@ import torch
 from torch import nn
 import math
 
-# 自定义实现timm库中的函数
 def to_2tuple(x):
-    """将输入转换为二元组"""
+    """"""
     if isinstance(x, tuple):
         return x
     return (x, x)
 
 def trunc_normal_(tensor, mean=0., std=1., a=-2., b=2.):
-    """截断正态分布初始化"""
+    """"""
     with torch.no_grad():
         tensor.normal_(mean=mean, std=std)
         tensor.clamp_(min=a, max=b)
@@ -33,7 +32,7 @@ class DropPath(nn.Module):
         return output
 
 class KANLayer(nn.Module):
-    """KAN (Kolmogorov Arnold Network) 层"""
+    """KAN (Kolmogorov Arnold Network) """
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0., no_kan=False):
         super().__init__()
         out_features = out_features or in_features
@@ -137,7 +136,7 @@ class KANLayer(nn.Module):
         return x
 
 class KANBlock(nn.Module):
-    """KAN块，包含归一化和KAN层"""
+    """KAN，KAN"""
     def __init__(self, dim, drop=0., drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm, no_kan=False):
         super().__init__()
 
@@ -169,7 +168,7 @@ class KANBlock(nn.Module):
         return x
 
 class DWConv(nn.Module):
-    """深度可分离卷积"""
+    """"""
     def __init__(self, dim=768):
         super(DWConv, self).__init__()
         self.dwconv = nn.Conv2d(dim, dim, 3, 1, 1, bias=True, groups=dim)
@@ -182,7 +181,7 @@ class DWConv(nn.Module):
         return x
 
 class DW_bn_relu(nn.Module):
-    """深度可分离卷积+批归一化+ReLU"""
+    """++ReLU"""
     def __init__(self, dim=768):
         super(DW_bn_relu, self).__init__()
         self.dwconv = nn.Conv2d(dim, dim, 3, 1, 1, bias=True, groups=dim)
@@ -199,7 +198,7 @@ class DW_bn_relu(nn.Module):
         return x
 
 class PatchEmbed(nn.Module):
-    """图像到Patch嵌入"""
+    """Patch"""
     def __init__(self, img_size=224, patch_size=7, stride=4, in_chans=3, embed_dim=768):
         super().__init__()
         img_size = to_2tuple(img_size)
@@ -239,7 +238,7 @@ class PatchEmbed(nn.Module):
         return x, H, W
 
 class ConvLayer(nn.Module):
-    """标准卷积层（双卷积）"""
+    """（）"""
     def __init__(self, in_ch, out_ch):
         super(ConvLayer, self).__init__()
         self.conv = nn.Sequential(
@@ -255,7 +254,7 @@ class ConvLayer(nn.Module):
         return self.conv(input)
 
 class D_ConvLayer(nn.Module):
-    """解码器卷积层"""
+    """"""
     def __init__(self, in_ch, out_ch):
         super(D_ConvLayer, self).__init__()
         self.conv = nn.Sequential(
@@ -268,4 +267,4 @@ class D_ConvLayer(nn.Module):
         )
 
     def forward(self, input):
-        return self.conv(input)
+        return self.conv(input) 
