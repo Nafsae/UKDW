@@ -1,1 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Image artifacts
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
+*.tiff
+
+# Misc local artifacts
+.DS_Store
 .ace-tool/
